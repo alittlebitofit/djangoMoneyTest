@@ -127,5 +127,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+# from djmoney import money
+
+# currencies =  money.moneyed.list_all_currencies()
+# # print(currencies)
+# print(len(currencies))
+# currencies_that_exist = []
+# for currency in currencies:
+#   if currency.country_codes:
+#     currencies_that_exist.append(f"('{currency.code}', '{currency.name}')")
+
+# # ['code', 'countries', 'country_codes', 'get_name', 'name', 'numeric', 'sub_unit', 'zero']
+# print('code', currencies[0].code)
+# print('countries', currencies[0].countries)
+# print('country_codes', currencies[0].country_codes)
+# print('numeric', currencies[0].numeric)
+# print('sub_unit', currencies[0].sub_unit)
+# print('zero', currencies[0].zero)
+# # print(currencies_that_exist)
+# print(len(currencies_that_exist))
+
+# # for c in currencies_that_exist:
+# #   print(f"{c}")
+
+# # CURRENCIES = tuple(currencies_that_exist)
+# # CURRENCIES = currencies_that_exist
+# CURRENCY_CHOICES = currencies_that_exist
+
 from included_currencies import INCLUDED_CURRENCIES 
 CURRENCIES = INCLUDED_CURRENCIES

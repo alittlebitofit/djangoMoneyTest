@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import ReservationForm
-from djmoney.settings import CURRENCY_CHOICES
+# from djmoney.settings import CURRENCY_CHOICES
 
 
 def index(request):
