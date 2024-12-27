@@ -124,3 +124,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+from djmoney.settings import CURRENCY_CHOICES
+
+EXCLUDED_CURRENCIES = [
+
+]
+
+FILTERED_CURRENCY_CHOICES = [
+	(code, name) for code, name in CURRENCY_CHOICES if name not in EXCLUDED_CURRENCIES
+]
+
+MONEY_CURRENCY_CHOICES = FILTERED_CURRENCY_CHOICES
