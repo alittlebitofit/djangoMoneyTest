@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import ReservationForm
 # from djmoney.settings import CURRENCY_CHOICES
 
@@ -12,3 +12,7 @@ def index(request):
 
 	form = ReservationForm()
 	return render(request, 'djangoMoneyTest/index.html', {'form': form})
+
+
+def google(request):
+	return redirect('https://www.google.com/')

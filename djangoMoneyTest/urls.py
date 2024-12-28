@@ -5,4 +5,5 @@ app_name='dmt'
 
 urlpatterns = [
 	path('', views.index, name='index'),
+	path('google/', views.google, name='google'),
 ]
