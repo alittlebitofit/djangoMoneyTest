@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+</head>
+<body>
+
+	<form action="{% url 'dmt:save-customer' %}" method="post" id="customer-form">
+		{% csrf_token %}
+		<label for="first_name">First Name:</label>
+		<input type="text" id="first_name" name="first_name" required><br><br>
+	
+		<label for="last_name">Last Name:</label>
+		<input type="text" id="last_name" name="last_name" required><br><br>
+	
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required><br><br>
+	
+		<label for="phone_number">Phone Number:</label>
+		<input id="phone" type="tel" name="phone_number" required><br><br>
+	
+		<input type="hidden" id="country" name="country">  <!-- Hidden country name field -->
+	
+		<button type="submit">Submit</button>
+	</form>
+	
+	
+
+	<script>
+		const phoneInput = document.querySelector("#phone");
+		const countryInput = document.querySelector("#country");
+		const YOUR_TOKEN = '8b23fe3ac051fe';
+		const iti = intlTelInput(phoneInput, {
+			initialCountry: "auto",
+			geoIpLookup: function (callback) {
+				fetch(`https://ipinfo.io?token=${YOUR_TOKEN}`)
+					.then((resp) => resp.json())
+					.then((data) => callback(data.country))
+					.catch(() => callback("US"));
+			},
+			utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+		});
+	
+		document.querySelector("#customer-form").addEventListener("submit", function (e) {
+			const fullNumber = iti.getNumber(); // Get the full international number
+			const countryData = iti.getSelectedCountryData(); // Get country details
+	
+			phoneInput.value = fullNumber; // Store the full phone number
+			countryInput.value = countryData.name; // Store the country name
+		});
+	</script>
+	
+</body>
+</html>
