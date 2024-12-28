@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+</head>
+<body>
+    <h1>Employee List</h1>
+    <ul>
+        {% for employee in employees %}
+        <li>
+            <img src="{{ employee.profile_picture.url }}" alt="{{ employee.first_name }}'s picture" width="100">
+            <p>{{ employee.first_name }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
